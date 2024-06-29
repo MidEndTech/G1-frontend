@@ -1,17 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
+
+const host = import.meta.env.VITE_SERVER_HOST;
+const port = import.meta.env.VITE_SERVER_PORT;
 
 function Signup() {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
   const user = {
     email: String,
     name: String,
     password: String,
   };
 
-  const fetchAPI = async () => {};
+  const fetchAPI = async () => {
+    const res = await fetch(`http://${host}:${port}/api/user/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (res.status === 200) {
+      navigate("/login");
+    } else if (res.status === 401) {
+      setIsError(true);
+      setError("Wrong Email or Name!");
+    } else if (res.status === 409) {
+      setIsError(true);
+      setError("Wrong Email or Name!");
+    } else {
+      setIsError(true);
+      setError("Something Went Wrong!, Please Try Again");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
