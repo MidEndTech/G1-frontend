@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
 
-const host = import.meta.env.VITE_SERVER_HOST;
-const port = import.meta.env.VITE_SERVER_PORT;
+const host = import.meta.env.SERVER_HOST;
+const port = import.meta.env.SERVER_PORT;
 
 function Signup() {
   const [error, setError] = useState("");
@@ -27,9 +27,6 @@ function Signup() {
     if (res.status === 200) {
       navigate("/login");
     } else if (res.status === 401) {
-      setIsError(true);
-      setError("Wrong Email or Name!");
-    } else if (res.status === 409) {
       setIsError(true);
       setError("Wrong Email or Name!");
     } else {
