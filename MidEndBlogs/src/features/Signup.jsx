@@ -2,8 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
 
-const host = import.meta.env.SERVER_HOST;
-const port = import.meta.env.SERVER_PORT;
+const host = import.meta.env.VITE_SERVER_HOST;
+const port = import.meta.env.VITE_SERVER_PORT;
 
 function Signup() {
   const [error, setError] = useState("");
@@ -16,7 +16,8 @@ function Signup() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`http://${host}:${port}/api/user/signup`, {
+    console.log(host);
+    const res = await fetch(`http://${host}:${port}/api/register/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
