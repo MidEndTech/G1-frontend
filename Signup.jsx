@@ -7,7 +7,7 @@ function Signup() {
   const [isError, setIsError] = useState(false);
   const user = {
     email: String,
-    fullname: String,
+    name: String,
     password: String,
   };
 
@@ -17,7 +17,7 @@ function Signup() {
     e.preventDefault();
 
     user.email = e.target.email.value;
-    user.fullname = e.target.fullname.value;
+    user.name = e.target.name.value;
     user.password = e.target.password.value;
 
     await fetchAPI();
@@ -45,7 +45,7 @@ function Signup() {
             <Input
               title="Full Name"
               type="text"
-              name="fullname"
+              name="name"
               placeholder="Enter full name..."
             />
             <Input
