@@ -5,6 +5,8 @@ export default {
     extend: {
       colors: {
         primary: "#00a898",
+        "active-background": "#d9f2f0",
+        "active-text": "#148376",
       },
     },
   },

@@ -4,7 +4,7 @@ function HomePage() {
   return (
     <div>
       HomePage .
-      <Link to="signup" className="m-2 text-blue-600 underline">
+      <Link to="signup" className="m-2 text-blue-600 underline ">
         Signup
       </Link>
     </div>
