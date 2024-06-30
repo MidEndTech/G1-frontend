@@ -84,8 +84,9 @@ function Login() {
               LOG IN
             </button>
             <Link to="/signup" className="font-semibold text-center mt-4">
-              YOU DON'T HAVE AN ACCOUNT? SIGN UP!
+              You dont'have an account? Sign up
             </Link>
+            <Link className="font-medium text-center mt-2">Forgot password? </Link>
 
           </form>
         </section>
