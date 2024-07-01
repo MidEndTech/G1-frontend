@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 
 function Profile() {
   const [records, setRecords] = useState([]);
+
+  const [showModal, setShowModal] = React.useState(false);
+
 
   /*useEffect(() => {
       fetch('url')
