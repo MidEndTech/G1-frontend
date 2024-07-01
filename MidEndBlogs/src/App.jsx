@@ -4,7 +4,8 @@ import Signup from "./features/Signup";
 import Login from "./features/Login";
 import Layout from "./components/Layout";
 import WelcomePage from "./features/WelcomePage";
-import CreateBlog from "./features/CreateBlog";
+
+import Posts from "./features/Posts";
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="blog" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="createblog" element={<CreateBlog/>}/>
+          <Route path="Posts" element={<Posts/>}/>
         </Route>
 
       </Routes>
