@@ -8,9 +8,7 @@ function CreateBlog() {
 
   const handleNewBlogClick = () => {
     setShowForm(true);
-    <Link to="CreateBlog">
-
-    </Link>
+    
   };
 
   const handleCloseForm = () => {
