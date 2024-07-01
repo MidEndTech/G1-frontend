@@ -7,6 +7,7 @@ import WelcomePage from "./features/WelcomePage";
 import CreateBlog from "./features/CreateBlog";
 import ProtectedRoute from "./protection/ProtectedRoute";
 import PublicRoute from "./protection/PublicRoute";
+import Profile from "./features/Profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="home" element={<HomePage />} />
             <Route path="createblog" element={<CreateBlog />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
         </Route>
       </Routes>
