@@ -5,7 +5,7 @@ import Login from "./features/Login";
 import Layout from "./components/Layout";
 import WelcomePage from "./features/WelcomePage";
 import CreateBlog from "./features/CreateBlog";
-
+import ProtectedRoute from "./protection/ProtectedRoute";
 
 function App() {
   return (
@@ -14,11 +14,12 @@ function App() {
         <Route index element={<WelcomePage />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
-        <Route path="blog" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="createblog" element={<CreateBlog/>}/>
+        <Route element={<ProtectedRoute />}>
+          <Route element={<Layout />}>
+            <Route path="home" element={<HomePage />} />
+            <Route path="createblog" element={<CreateBlog />} />
+          </Route>
         </Route>
-
       </Routes>
     </BrowserRouter>
   );
