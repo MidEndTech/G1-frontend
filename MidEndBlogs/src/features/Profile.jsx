@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
+import Cookies from "js-cookie"; 
+const host = import.meta.env.VITE_SERVER_HOST;
+const port = import.meta.env. VITE_SERVER_PORT;
 
 function Profile() {
   const [records, setRecords] = useState([]);
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate()
 
+  async function handleLogout() {
+      const token = Cookies.get("token")
+      const res = await fetch(`http://${host}:${port}/api/logout`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        
+      });
 
-  /*useEffect(() => {
-      fetch('url')
-      .then(res => res.json())
-      .then(data => setRecords(data))
-      .catch(err => console.log(err))
-  },[])*/
+      if (res.status === 200) {
+        Cookies.remove('token');
+      navigate("/")
+      }
+    
+  }
+
+ 
 
   return (
-    <>
-    
+    <> 
     <div className="bg-neutral-100 flex flex-col items-center gap-8 p-8">
 
       <div className="flex flex-col items-center">
@@ -58,19 +72,11 @@ function Profile() {
           <section className="bg-emerald-300 bg-opacity-25 p-4">
               <p className="font-semibold justify-center flex">Time to go?</p>
                 <section className="border-2 rounded-lg border-opacity-85 rad border-gray-500 mt-3 px-5 py-1 ">
-                    <button>SIGN OUT</button>
+                    <button onClick={handleLogout}>SIGN OUT</button>
                 </section>
           </section>
         </div>
 
-        <div>DELETE ACOOUNT</div>
-
-      {/*<ul>
-        {records.map((list, index) => (
-          <li key={index}>{list.id} | {list.id}</li>
-        ))}
-      </ul>*/}
-    
     </div>
   
   </>

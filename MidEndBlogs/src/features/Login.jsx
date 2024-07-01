@@ -27,7 +27,7 @@ function Login() {
       const data = await res.json();
         const token = data.token;
         Cookies.set("token", token, { expires: 2 });
-      navigate("/blog");
+      navigate("/home");
     } else if (res.status === 401) {
       setIsError(true);
       setError("Invalid email or password. Please try again.");
