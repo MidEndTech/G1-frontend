@@ -1,11 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./features/HomePage";
 import Signup from "./features/Signup";
 import Login from "./features/Login";
 import Layout from "./components/Layout";
 import WelcomePage from "./features/WelcomePage";
 
-import Posts from "./features/Posts";
+import Blogs from "./features/Blogs";
 
 import ProtectedRoute from "./protection/ProtectedRoute";
 import PublicRoute from "./protection/PublicRoute";
@@ -22,7 +21,7 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="blogs" element={<Posts/>}/>
+            <Route path="blogs" element={<Blogs />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Route>
