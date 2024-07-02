@@ -27,12 +27,15 @@ function Signup() {
 
     if (res.status === 200) {
       navigate("/login");
-    } else if (res.status === 401) {
+    } else if (res.status === 400) {
       setIsError(true);
-      setError("Wrong Email or Name!");
+      setError("Password should be at least 8 characters.");
+    } else if (res.status === 409) {
+      setIsError(true);
+      setError("Already signed email, Please try another one.");
     } else {
       setIsError(true);
-      setError("Something Went Wrong!, Please Try Again");
+      setError("Something went wrong, Please try again.");
     }
   };
 
