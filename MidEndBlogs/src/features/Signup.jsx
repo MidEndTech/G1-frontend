@@ -25,7 +25,7 @@ function Signup() {
       body: JSON.stringify(user),
     });
 
-    if (res.status === 200) {
+   if (res.status === 200) {
       navigate("/login");
     } else if (res.status === 400) {
       setIsError(true);
