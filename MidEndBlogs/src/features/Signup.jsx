@@ -27,13 +27,13 @@ function Signup() {
 
    if (res.status === 200) {
       navigate("/login");
-    } else if (res.status === 400){
+    } else if (res.status === 400) {
       setIsError(true);
       setError("Password should be at least 8 characters.");
     } else if (res.status === 409) {
       setIsError(true);
       setError("Already signed email, Please try another one.");
-    }else {
+    } else {
       setIsError(true);
       setError("Something went wrong, Please try again.");
     }
