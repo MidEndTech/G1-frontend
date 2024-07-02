@@ -4,7 +4,9 @@ import Signup from "./features/Signup";
 import Login from "./features/Login";
 import Layout from "./components/Layout";
 import WelcomePage from "./features/WelcomePage";
-import CreateBlog from "./features/CreateBlog";
+
+import Posts from "./features/Posts";
+
 import ProtectedRoute from "./protection/ProtectedRoute";
 import PublicRoute from "./protection/PublicRoute";
 import Profile from "./features/Profile";
@@ -20,8 +22,7 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="home" element={<HomePage />} />
-            <Route path="createblog" element={<CreateBlog />} />
+            <Route path="blogs" element={<Posts/>}/>
             <Route path="profile" element={<Profile />} />
           </Route>
         </Route>
