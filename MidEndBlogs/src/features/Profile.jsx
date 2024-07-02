@@ -26,16 +26,17 @@ function Profile() {
   }
 
   return (
-    <>
-      <div className="bg-neutral-100 flex flex-col items-center gap-8 p-8">
-        <div className="flex flex-col items-center">
-          <img
-            className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover"
-            src="https://via.placeholder.com/150"
-            alt="Profile Image"
-          />
-          <p className="text-lg font-bold mt-4">User's Name Variable</p>
-        </div>
+    <> 
+    <div className="flex-grow h-fit flex flex-col items-center gap-8 p-8">
+
+      <div className="flex flex-col items-center">
+        <img
+          className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover"
+          src="https://via.placeholder.com/150"
+          alt="Profile Image"/>
+        <p className="text-lg font-bold mt-4">User's Name Variable</p>
+      </div>
+
 
         <hr className="border-2 w-full" />
 
