@@ -32,7 +32,7 @@ function Profile() {
 
   return (
     <> 
-    <div className="bg-neutral-100 flex flex-col items-center gap-8 p-8">
+    <div className="flex-grow h-fit flex flex-col items-center gap-8 p-8">
 
       <div className="flex flex-col items-center">
         <img

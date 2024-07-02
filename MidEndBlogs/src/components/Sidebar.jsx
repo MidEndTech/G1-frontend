@@ -8,8 +8,8 @@ import {
 
 function Sidebar() {
   return (
-    <aside className="border-r w-72 flex flex-col gap-8 justify-between">
-      <section className="p-3 pl-3">
+    <aside className="min-h-screen fixed top-0 left-0 w-64 border-r">
+      <section className="p-3 pl-3 self-start sticky top-0 col-span-1">
         <h1 className="text-primary font-semibold text-lg border-b w-full pl-2 pb-2 mb-2">
           MET Blog
         </h1>
@@ -31,12 +31,7 @@ function Sidebar() {
           />
         </ul>
       </section>
-      <div className="bg-gray-100 flex gap-2 py-4 px-6 border-t items-center">
-        <div className="text-gray-300">
-          <MdOutlineAccountCircle size={56} />
-        </div>
-        <span className="text-lg font-semibold">Username</span>
-      </div>
+      
     </aside>
   );
 }
