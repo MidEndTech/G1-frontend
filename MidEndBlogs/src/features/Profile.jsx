@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Tooltip } from 'react-tooltip'
+
 const host = import.meta.env.VITE_SERVER_HOST;
 const port = import.meta.env.VITE_SERVER_PORT;
 
@@ -68,10 +70,16 @@ function Profile() {
           <section className="bg-emerald-300 bg-opacity-25 p-4">
             <p className="font-semibold justify-center flex">Time to go?</p>
             <section className="border-2 rounded-lg border-opacity-85 rad border-gray-500 mt-3 px-5 py-1 ">
-              <button onClick={handleLogout}>SIGN OUT</button>
+             <a className="my-anchor-element"><button onClick={handleLogout}>SIGN OUT</button></a>
             </section>
+            <Tooltip anchorSelect=".my-anchor-element" place="top">
+              See you soon!
+            </Tooltip>
           </section>
         </div>
+
+        
+
       </div>
     </>
   );
