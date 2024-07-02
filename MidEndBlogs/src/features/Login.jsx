@@ -1,17 +1,51 @@
-import { Link } from "react-router-dom";
+ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
+import Cookies from "js-cookie"; 
+
+const host = import.meta.env.VITE_SERVER_HOST;
+const port = import.meta.env. VITE_SERVER_PORT;
 
 function Login() {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
-  const fetchAPI = async () => {};
+  const navigate = useNavigate();
+  const user = {
+    email: String,
+    password: String,
+  };
+
+  const fetchAPI = async () => {
+    const res = await fetch(`http://${host}:${port}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    if (res.status === 200) {
+      const data = await res.json();
+        const token = data.token;
+        Cookies.set("token", token, { expires: 2 });
+      navigate("/home");
+    } else if (res.status === 401) {
+      setIsError(true);
+      setError("Invalid email or password. Please try again.");
+    } else {
+      setIsError(true);
+      setError("Something Went Wrong! Please try again.");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    user.email = e.target.email.value;
+    user.password = e.target.password.value;
 
     await fetchAPI();
   };
+
+
   return (
     <div className="w-screen min-h-screen bg-neutral-100">
       <p className="text-4xl font-bold text-gray-700 text-center pt-40 mb-8">
