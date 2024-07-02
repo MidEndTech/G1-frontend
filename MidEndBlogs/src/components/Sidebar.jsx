@@ -8,8 +8,8 @@ import {
 
 function Sidebar() {
   return (
-    <aside className="min-h-screen fixed top-0 left-0 w-64 border-r">
-      <section className="p-3 pl-3 self-start sticky top-0 col-span-1">
+    <aside className="border-r w-72 flex flex-col gap-8 justify-between">
+      <section className="p-3 pl-3">
         <h1 className="text-primary font-semibold text-lg border-b w-full pl-2 pb-2 mb-2">
           MET Blog
         </h1>
