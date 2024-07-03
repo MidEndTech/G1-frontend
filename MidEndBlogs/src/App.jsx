@@ -4,11 +4,13 @@ import Login from "./features/Login";
 import Layout from "./components/Layout";
 import WelcomePage from "./features/WelcomePage";
 
-import Blogs from "./features/Blogs";
+import AllBlogs from "./features/AllBlogs";
 
 import ProtectedRoute from "./protection/ProtectedRoute";
 import PublicRoute from "./protection/PublicRoute";
 import Profile from "./features/Profile";
+import CreateBlog from "./features/CreateBlog";
+import ShowBlog from "./features/ShowBlog";
 
 function App() {
   return (
@@ -21,7 +23,11 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="blogs" element={<Blogs />} />
+            <Route path="blogs">
+              <Route index element={<AllBlogs />} />
+              <Route path="createblog" element={<CreateBlog />} />
+              <Route path="blog" element={<ShowBlog />} />
+            </Route>
             <Route path="profile" element={<Profile />} />
           </Route>
         </Route>

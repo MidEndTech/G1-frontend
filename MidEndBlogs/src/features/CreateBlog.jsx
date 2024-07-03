@@ -1,16 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Blogs() {
-  const [showForm, setShowForm] = useState(false); // Initialize with false
+function CreateBlog() {
   const [text, setText] = useState("");
   const [content, setContent] = useState("");
-
-  const handleNewBlogClick = () => {
-    setShowForm(true);
-  };
+  const navigate = useNavigate();
 
   const handleCloseForm = () => {
-    setShowForm(false);
+    navigate("/blogs");
   };
 
   const handleTextChange = (event) => {
@@ -28,27 +25,8 @@ function Blogs() {
     handleCloseForm();
   };
 
-  if (!showForm) {
-    return (
-      <div className="font-semibold px-14 text-4xl py-10 text-nowrap  text-left leading-6">
-        All Posts
-        <div className="font-light px-1 text-base opacity-40 py-4">
-          keep up with what's happening in our vibrant community.
-        </div>
-        <div className=" items-center justify-center relative w-full">
-          <button
-            onClick={handleNewBlogClick}
-            className=" fixed font-normal text-xl p-4 px-10 bg-primary text-center text-white mt-2 rounded-full shadow-lg bottom-5 right-5"
-          >
-            New Blog
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center  bg-gray-200/70">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-200/70">
       <div className="bg-white rounded-lg shadow-xl w-96 p-6 relative">
         <button
           onClick={handleCloseForm}
@@ -85,10 +63,8 @@ function Blogs() {
               id="content"
               value={content}
               onChange={handleContentChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-primary sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="Enter content..."
-              rows={8}
-              cols={8}
             />
           </div>
           <button
@@ -103,4 +79,4 @@ function Blogs() {
   );
 }
 
-export default Blogs;
+export default CreateBlog;
