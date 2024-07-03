@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
+import { VscAdd } from "react-icons/vsc";
 
 function AllBlogs() {
   const navigate = useNavigate();
@@ -37,9 +38,8 @@ function AllBlogs() {
       <div className="w-full">
         <button
           onClick={handleNewBlogClick}
-          className="fixed font-normal text-xl p-4 px-10 bg-primary text-center text-white mt-2 rounded-full shadow-lg bottom-5 right-5"
-        >
-          New Blog
+          className="fixed font-normal text-xl p-4 px-10 bg-primary text-center text-white mt-2 rounded-full shadow-lg bottom-5 right-5">
+          <VscAdd className="inline"/> New Blog
         </button>
       </div>
     </div>

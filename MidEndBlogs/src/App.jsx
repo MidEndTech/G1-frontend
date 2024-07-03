@@ -11,6 +11,7 @@ import PublicRoute from "./protection/PublicRoute";
 import Profile from "./features/Profile";
 import CreateBlog from "./features/CreateBlog";
 import ShowBlog from "./features/ShowBlog";
+import Leaderboard from "./features/Leaderboard";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="blog" element={<ShowBlog />} />
             </Route>
             <Route path="profile" element={<Profile />} />
+            <Route path="leaderboard" element={<Leaderboard />}/>
           </Route>
         </Route>
       </Routes>
