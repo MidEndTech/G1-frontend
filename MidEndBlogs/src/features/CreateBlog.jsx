@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
+const host = import.meta.env.VITE_SERVER_HOST;
+const port = import.meta.env.VITE_SERVER_PORT;
 
 function CreateBlog() {
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
@@ -10,19 +14,27 @@ function CreateBlog() {
     navigate("/blogs");
   };
 
-  const handleTextChange = (event) => {
-    setText(event.target.value);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
   const handleContentChange = (event) => {
     setContent(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Text:", text);
-    console.log("Content:", content);
-    handleCloseForm();
+    const blog = { title, content };
+    const token = Cookies.get("token");
+    const res = await fetch(`http://${host}:${port}/api/posts/store`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blog),
+    });
+    if (res.status === 200) handleCloseForm();
   };
 
   return (
@@ -38,16 +50,16 @@ function CreateBlog() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              htmlFor="text"
+              htmlFor="title"
               className="block text-sm font-medium text-gray-700"
             >
               Title
             </label>
             <input
               type="text"
-              id="text"
-              value={text}
-              onChange={handleTextChange}
+              id="title"
+              value={title}
+              onChange={handleTitleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="Enter Title."
             />
@@ -65,6 +77,8 @@ function CreateBlog() {
               onChange={handleContentChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="Enter content..."
+              cols={10}
+              rows={8}
             />
           </div>
           <button
