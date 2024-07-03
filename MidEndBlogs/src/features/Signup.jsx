@@ -15,7 +15,7 @@ function Signup() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`${url}/register/user`, {
+    const res = await fetch(`https://group-one.midend.tech/api/register/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
