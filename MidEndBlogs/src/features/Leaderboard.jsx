@@ -1,9 +1,38 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 
+const url = import.meta.env.VITE_SERVER_URL;
+
+useEffect(() => {
+    const token = Cookies.get("token");
+    async function fetchAPI() {
+      if (activeTab === "likes"){
+        const res = await fetch(`${url}/`, {
+                method: "GET",
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            });
+            setData(await res.json().data);
+            }
+
+      else {
+        const res = await fetch(`${url}/`, {
+                method: "GET",
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            });
+            setData(await res.json().data);
+            };
+
+            fetchAPI();
+      }
+        
+  });
+
 function Leaderboard() {
   const [activeTab, setActiveTab] = useState("likes");
-
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -17,8 +46,8 @@ function Leaderboard() {
               <button
                 className={`${
                   activeTab === "likes"
-                    ? "active bg-primary text-white rounded-sm p-2.5"
-                    : "hover:bg-gray-200 p-1"
+                    ? "active bg-primary text-white rounded-sm p-3"
+                    : "hover:bg-gray-200 p-3"
                 }`}
                 onClick={(left) => handleTabClick("likes")}
               >
@@ -29,8 +58,8 @@ function Leaderboard() {
               <button
                 className={`${
                   activeTab === "views"
-                    ? "active bg-primary text-white rounded-sm p-2.5"
-                    : "hover:bg-gray-200 p-1"
+                    ? "active bg-primary text-white rounded-sm p-3"
+                    : "hover:bg-gray-200 p-3"
                 }`}
                 onClick={() => handleTabClick("views")}
               >
