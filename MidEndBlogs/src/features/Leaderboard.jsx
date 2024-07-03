@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-
-const url = import.meta.env.VITE_SERVER_URL;
+import BlogCard from "../components/BlogCard";
 
 function Leaderboard() {
   const [activeTab, setActiveTab] = useState("likes");
@@ -10,23 +9,23 @@ function Leaderboard() {
   useEffect(() => {
     const token = Cookies.get("token");
     async function fetchAPI() {
-      if (activeTab === "likes") {
-        const res = await fetch(`${url}/`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setLikesData(await res.json().data);
-      } else {
-        const res = await fetch(`${url}/`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setViewsData(await res.json().data);
-      }
+      const likesRes = await fetch("https://group-one.midend.tech/api/", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const tempLikes = await likesRes.json();
+      setLikesData(tempLikes.data);
+
+      const viewsRes = await fetch("https://group-one.midend.tech/api/viewer", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const tempViews = await viewsRes.json();
+      setViewsData(tempViews.data);
     }
     fetchAPI();
   });
@@ -68,11 +67,37 @@ function Leaderboard() {
       </div>
 
       {activeTab === "likes" && (
-        <div className="blog-list">{/* Render blogs sorted by likes */}</div>
+        <div className="flex gap-2">
+          {likesData &&
+            likesData.map((blog) => (
+              <BlogCard
+                key={blog.id}
+                id={blog.id}
+                title={blog.title}
+                content={blog.content}
+                likes={blog.Likes}
+                views={blog.unique_views_count}
+                username={blog.username}
+              />
+            ))}
+        </div>
       )}
 
       {activeTab === "views" && (
-        <div className="blog-list">{/* Render blogs sorted by views */}</div>
+        <div className="flex gap-2">
+          {viewsData &&
+            viewsData.map((blog) => (
+              <BlogCard
+                key={blog.id}
+                id={blog.id}
+                title={blog.title}
+                content={blog.content}
+                likes={blog.Likes}
+                views={blog.unique_views_count}
+                username={blog.username}
+              />
+            ))}
+        </div>
       )}
     </>
   );
