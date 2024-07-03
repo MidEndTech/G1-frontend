@@ -16,8 +16,8 @@ jobs:
         key: ${{secrets.private_key}}
         script_stop: true
         script: |
-          cd /var/www/todo-frontend
-          git pull
           . ~/.nvm/nvm.sh
+          cd /var/www/G1-frontend/MidEndBlogs
+          git pull
           npm ci
           npm run build
