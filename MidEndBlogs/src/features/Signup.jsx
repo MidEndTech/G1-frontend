@@ -2,8 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
 
-const host = import.meta.env.VITE_SERVER_HOST;
-const port = import.meta.env.VITE_SERVER_PORT;
+const url = import.meta.env.VITE_SERVER_URL;
 
 function Signup() {
   const [error, setError] = useState("");
@@ -16,8 +15,7 @@ function Signup() {
   };
 
   const fetchAPI = async () => {
-    console.log(host);
-    const res = await fetch(`http://${host}:${port}/api/register/user`, {
+    const res = await fetch(`${url}/register/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +23,7 @@ function Signup() {
       body: JSON.stringify(user),
     });
 
-   if (res.status === 200) {
+    if (res.status === 200) {
       navigate("/login");
     } else if (res.status === 400) {
       setIsError(true);
