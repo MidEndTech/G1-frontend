@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const url = import.meta.env.VITE_SERVER_URL;
-
 function CreateBlog() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -25,7 +23,7 @@ function CreateBlog() {
     event.preventDefault();
     const blog = { title, content };
     const token = Cookies.get("token");
-    const res = await fetch(`${url}/posts/store`, {
+    const res = await fetch("https://group-one.midend.tech/api/posts/store", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

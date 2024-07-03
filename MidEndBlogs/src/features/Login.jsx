@@ -3,8 +3,6 @@ import Input from "../components/Input";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const url = import.meta.env.VITE_SERVER_URL;
-
 function Login() {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
@@ -15,7 +13,7 @@ function Login() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`${url}/login`, {
+    const res = await fetch("http://192.168.8.19:8000//api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
