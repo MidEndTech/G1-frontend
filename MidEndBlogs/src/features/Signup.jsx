@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 function Signup() {
   const [error, setError] = useState("");
@@ -22,7 +23,10 @@ function Signup() {
     });
 
     if (res.status === 200) {
-      navigate("/login");
+      const data = await res.json();
+      const token = data.token;
+      Cookies.set("token", token, { expires: 2 });
+      navigate("/blogs");
     } else if (res.status === 400) {
       setIsError(true);
       setError("Password should be at least 8 characters.");
