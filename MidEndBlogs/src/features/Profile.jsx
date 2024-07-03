@@ -69,7 +69,7 @@ function Profile() {
       </div>
 
         <div>
-          <section className="bg-emerald-300 bg-opacity-25 p-4">
+          <section className="bg-emerald-300 bg-opacity-25 p-4 rounded-md ">
               <p className="font-semibold justify-center flex">Time to go?</p>
                 <section className="border-2 rounded-lg border-opacity-85 rad border-gray-500 mt-3 px-5 py-1 ">
                     <button onClick={handleLogout}>SIGN OUT</button>
