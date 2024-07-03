@@ -6,9 +6,25 @@ import { ImExit } from "react-icons/im";
 
 function Profile() {
   const [records, setRecords] = useState([]);
-
+  const [data, setData] = useState({});
   const [showModal, setShowModal] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    async function fetchAPI() {
+      const res = await fetch("https://group-one.midend.tech/api/profile", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const currentData = await res.json();
+      setData(currentData);
+    }
+    fetchAPI();
+  }, []);
 
   async function handleLogout() {
     const token = Cookies.get("token");
@@ -43,13 +59,17 @@ function Profile() {
           <p className="text-lg font-bold">Profile details</p>
           <section className="border-2 border-gray-300 mt-4 p-4 min-w-64">
             <p className="mb-2">
-              <span className="font-semibold">Full Name:</span>
+              <span className="font-semibold">
+                Full Name: {data.name && data.name}
+              </span>
             </p>
             <p className="mb-2">
-              <span className="font-semibold">Email:</span>
+              <span className="font-semibold">
+                Email: {data.email && data.email}
+              </span>
             </p>
             <p className="mb-2">
-              <span className="font-semibold">Bio:</span>
+              <span className="font-semibold">Bio: {data.bio && data.bio}</span>
             </p>
           </section>
         </div>
