@@ -3,8 +3,6 @@ import BlogCard from "../components/BlogCard";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
-const url = import.meta.env.VITE_SERVER_URL;
-
 function AllBlogs() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -12,17 +10,20 @@ function AllBlogs() {
   useEffect(() => {
     const token = Cookies.get("token");
     async function fetchAPI() {
-      const res = await fetch(`${url}/posts/recent`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        "https://group-one.midend.tech/api/posts/recent",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const currentData = await res.json();
       setData(currentData.data);
     }
     fetchAPI();
-  }, [url]);
+  }, []);
 
   const handleNewBlogClick = () => {
     navigate("/blogs/createblog");
