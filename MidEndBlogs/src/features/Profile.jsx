@@ -36,7 +36,7 @@ function Profile() {
             src="https://via.placeholder.com/150"
             alt="Profile Image"
           />
-          <p className="text-lg font-bold mt-4">{"User's"} Name Variable</p>
+          <p className="text-lg font-bold mt-4">{"User's"} Name</p>
         </div>
 
         <hr className="border-2 w-full" />

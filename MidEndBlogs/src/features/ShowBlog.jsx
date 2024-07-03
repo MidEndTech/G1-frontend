@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { VscArrowLeft } from "react-icons/vsc";
 
 function ShowBlog() {
   const [likes, setLikes] = useState(0);
@@ -41,9 +42,8 @@ function ShowBlog() {
       <div className="mt-4 px-9">
         <button
           className="fixed font-normal text-xl p-4 px-10 bg-primary text-center text-white mt-2 rounded-full shadow-lg bottom-5 right-5"
-          onClick={handleGoBack}
-        >
-          Go back
+          onClick={handleGoBack}>
+        <VscArrowLeft className="inline"/> Go back
         </button>
       </div>
     </div>
