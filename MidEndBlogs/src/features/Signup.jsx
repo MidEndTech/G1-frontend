@@ -15,7 +15,7 @@ function Signup() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`${url}/register/user`, {
+    const res = await fetch(`${url}api/register/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
