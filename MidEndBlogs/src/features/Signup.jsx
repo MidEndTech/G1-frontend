@@ -2,8 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
 
-const url = import.meta.env.VITE_SERVER_URL;
-
 function Signup() {
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
@@ -15,7 +13,7 @@ function Signup() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`${url}/register/user`, {
+    const res = await fetch("https://group-one.midend.tech/api/register/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

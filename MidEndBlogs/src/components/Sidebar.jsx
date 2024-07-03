@@ -1,10 +1,6 @@
 import { IoMdHome } from "react-icons/io";
 import SidebarLink from "./SidebarLink";
-import {
-  MdAccountCircle,
-  MdLeaderboard,
-  MdOutlineAccountCircle,
-} from "react-icons/md";
+import { MdAccountCircle, MdLeaderboard } from "react-icons/md";
 
 function Sidebar() {
   return (
@@ -31,7 +27,6 @@ function Sidebar() {
           />
         </ul>
       </section>
-      
     </aside>
   );
 }
