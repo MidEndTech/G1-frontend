@@ -18,26 +18,15 @@ function AllBlogs() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setData(await res.json().data);
+      const currentData = await res.json();
+      setData(currentData.data);
     }
     fetchAPI();
-  });
+  }, [url]);
 
   const handleNewBlogClick = () => {
     navigate("/blogs/createblog");
   };
-
-  const handleCardClick = () => {
-    navigate("/blogs/blog");
-  };
-  // const blogPosts = [
-  //   {
-  //     id: 1,
-  //     title: "Hi Im Abeer",
-  //     content:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, molestias cum. Unde aperiam placeat dolore, itaque ea natus perferendis, hic autem laborum dicta debitis nobis omnis maiores est, facere odio.",
-  //   },
-  // ];
 
   return (
     <div className="font-semibold px-14 text-4xl py-10 text-nowrap text-left leading-6">
@@ -45,10 +34,7 @@ function AllBlogs() {
       <div className="font-light px-1 text-base opacity-40 py-4">
         Keep up with {"what's"} happening in our vibrant community.
       </div>
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"
-        onClick={handleCardClick}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 cursor-pointer">
         {data &&
           data.map((blog) => (
             <BlogCard
@@ -56,6 +42,9 @@ function AllBlogs() {
               id={blog.id}
               title={blog.title}
               content={blog.content}
+              likes={blog.Likes}
+              views={blog.unique_views_count}
+              username={blog.username}
             />
           ))}
       </div>
