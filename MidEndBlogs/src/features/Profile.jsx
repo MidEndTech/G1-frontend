@@ -4,8 +4,7 @@ import Cookies from "js-cookie";
 import { Tooltip } from "react-tooltip";
 import { ImExit } from "react-icons/im";
 
-const host = import.meta.env.VITE_SERVER_HOST;
-const port = import.meta.env.VITE_SERVER_PORT;
+const url = import.meta.env.VITE_SERVER_URL;
 
 function Profile() {
   const [records, setRecords] = useState([]);
@@ -15,7 +14,7 @@ function Profile() {
 
   async function handleLogout() {
     const token = Cookies.get("token");
-    const res = await fetch(`http://${host}:${port}/api/logout`, {
+    const res = await fetch(`${url}/logout`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

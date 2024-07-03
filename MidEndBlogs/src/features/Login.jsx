@@ -1,10 +1,9 @@
- import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useState } from "react";
-import Cookies from "js-cookie"; 
+import Cookies from "js-cookie";
 
-const host = import.meta.env.VITE_SERVER_HOST;
-const port = import.meta.env. VITE_SERVER_PORT;
+const url = import.meta.env.VITE_SERVER_URL;
 
 function Login() {
   const [error, setError] = useState("");
@@ -16,7 +15,7 @@ function Login() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch(`http://${host}:${port}/api/login`, {
+    const res = await fetch(`${url}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,9 +24,9 @@ function Login() {
     });
     if (res.status === 200) {
       const data = await res.json();
-        const token = data.token;
-        Cookies.set("token", token, { expires: 2 });
-      navigate("/home");
+      const token = data.token;
+      Cookies.set("token", token, { expires: 2 });
+      navigate("/blogs");
     } else if (res.status === 401) {
       setIsError(true);
       setError("Invalid email or password. Please try again.");
@@ -44,7 +43,6 @@ function Login() {
 
     await fetchAPI();
   };
-
 
   return (
     <div className="w-screen min-h-screen bg-neutral-100">
