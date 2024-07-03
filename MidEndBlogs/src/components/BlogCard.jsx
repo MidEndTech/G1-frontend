@@ -1,8 +1,10 @@
 // eslint-disable-next-line react/prop-types
-function BlogCard({ title, content, likes, views }) {
+function BlogCard({ id, title, content, username, likes, views }) {
   return (
     <div className="border border-gray-300 rounded-lg shadow-md p-9 m-1 px-3 py-3">
-      <h3 className="text-xl font-bold ">{title}</h3>
+      <h3 className="text-xl font-bold ">
+        {title}. <span className="opacity-50 text-sm">{username}</span>
+      </h3>
       <p className="text-gray-700 my-2 text-sm text-pretty">
         {/* eslint-disable-next-line react/prop-types*/}
         {content.substring(0, 80)}...
