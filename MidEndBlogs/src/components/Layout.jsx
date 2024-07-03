@@ -5,7 +5,9 @@ function Layout() {
   return (
     <div className="flex flex-row h-screen">
       <Sidebar />
-      <div className="ml-64 flex-grow"><Outlet /></div>
+      <div className="mx-auto flex-grow">
+        <Outlet />
+      </div>
     </div>
   );
 }
