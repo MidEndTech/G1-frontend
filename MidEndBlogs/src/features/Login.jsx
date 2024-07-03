@@ -13,7 +13,7 @@ function Login() {
   };
 
   const fetchAPI = async () => {
-    const res = await fetch("http://192.168.8.19:8000//api/login", {
+    const res = await fetch("https://group-one.midend.tech/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
